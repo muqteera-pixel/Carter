@@ -1,0 +1,3063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARTER · all buttons fixed · admin always asks password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CARTER FASHION – ALL BUTTONS FIXED – EVERYTHING WORKS */
+        :root {
+            --primary: #3E2A4A;
+            --secondary: #C9A04B;
+            --light: #F8F3FA;
+            --dark: #1F1425;
+            --success: #25D366;
+            --warning: #f39c12;
+            --danger: #c0392b;
+            --male: #4E3D5C;
+            --female: #B8739F;
+            --gold-light: #E3C684;
+            --bg-soft: #FCF9FF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-soft);
+            color: #2D1F33;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: white;
+            text-decoration: none;
+            border-left: 4px solid var(--secondary);
+            padding-left: 14px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 0;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s;
+            cursor: pointer;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+        }
+        
+        nav ul li a:hover,
+        nav ul li a:focus {
+            color: var(--secondary);
+            outline: none;
+        }
+        
+        /* hero */
+        .hero {
+            background: linear-gradient(rgba(31,20,37,0.7), rgba(62,42,74,0.8)), url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 30%;
+            color: white;
+            padding: 7rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .hero h1 strong {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn:hover,
+        .btn:focus {
+            background-color: #B4883A;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+            outline: none;
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-whatsapp {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-whatsapp:hover,
+        .btn-whatsapp:focus {
+            background-color: #128C7E;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #C1B3C7;
+            color: #1F1425;
+        }
+        
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #A28FB0;
+            color: white;
+        }
+        
+        .btn-back {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-back:hover,
+        .btn-back:focus {
+            background-color: #2A1C33;
+            color: var(--secondary);
+        }
+        
+        /* loading spinner */
+        .btn-loading .btn-text {
+            visibility: hidden;
+        }
+        
+        .btn-loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 0.9s ease infinite;
+        }
+        
+        @keyframes button-loading-spinner {
+            from { transform: rotate(0turn); }
+            to { transform: rotate(1turn); }
+        }
+        
+        /* gender section */
+        .gender-section {
+            padding: 5rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(62,42,74,0.85), rgba(31,20,37,0.9)), url('https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=1887&auto=format&fit=crop');
+            background-size: cover;
+            color: white;
+        }
+        
+        .gender-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .gender-btn {
+            padding: 2rem 3rem;
+            font-size: 1.6rem;
+            border-radius: 60px;
+            min-width: 250px;
+            background: rgba(201,160,75,0.9);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--gold-light);
+            color: #1F1425;
+            font-weight: 500;
+        }
+        
+        .gender-btn:hover,
+        .gender-btn:focus {
+            background: var(--secondary);
+            color: #000;
+            outline: none;
+        }
+        
+        /* products section */
+        .products-section {
+            padding: 4rem 0;
+            display: none;
+            background-color: var(--bg-soft);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        .section-title i, .section-title span {
+            font-weight: 400;
+            color: var(--secondary);
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(201,160,75,0.1);
+            padding: 1rem;
+            border-radius: 60px;
+        }
+        
+        .back-to-categories {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+        }
+        
+        .back-to-categories:hover,
+        .back-to-categories:focus {
+            color: var(--secondary);
+            background: rgba(201,160,75,0.1);
+            outline: none;
+        }
+        
+        /* search bar */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 2rem auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 0.9rem 1.5rem;
+            border: 2px solid var(--gold-light);
+            border-radius: 40px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .search-input:focus {
+            border-color: var(--secondary);
+        }
+        .search-btn {
+            padding: 0.9rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .search-btn:hover,
+        .search-btn:focus {
+            background: var(--secondary);
+            color: var(--dark);
+            outline: none;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(62,42,74,0.08);
+            transition: transform 0.25s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(201,160,75,0.2);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 30px rgba(62,42,74,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--gold-light);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark);
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+        
+        .product-description {
+            color: #4A3F50;
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+        
+        .product-category {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: white;
+            width: fit-content;
+        }
+        .category-male { background-color: var(--male); }
+        .category-female { background-color: var(--female); }
+        
+        /* about + services */
+        .about-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text h2 { color: var(--primary); margin-bottom: 1.5rem; }
+        .about-text p { margin-bottom: 1rem; color: #2A1F30; }
+        .about-image img { width: 100%; border-radius: 30px; box-shadow: 0 20px 30px rgba(0,0,0,0.1); border: 3px solid var(--gold-light);}
+        
+        .services-section {
+            padding: 5rem 0;
+            background: #F5EEFA;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 32px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: 0.2s;
+            border: 1px solid #EBDDCB;
+        }
+        .service-card:hover {
+            transform: scale(1.02);
+            border-color: var(--secondary);
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* --- COMPLETE ADMIN PANEL FEATURES --- */
+        .admin-panel {
+            padding: 4rem 0;
+            display: none;
+            background: #F1EAF5;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .admin-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #D8C5E3;
+            flex-wrap: wrap;
+        }
+        .admin-tab {
+            padding: 0.9rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .admin-tab:hover,
+        .admin-tab:focus {
+            color: var(--secondary);
+            outline: none;
+        }
+        .admin-tab.active {
+            border-bottom: 3px solid var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .admin-content { display: none; }
+        .admin-content.active { display: block; }
+        
+        /* forms & cards */
+        .admin-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid #DECFAB;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--primary);}
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #D2C1DD;
+            border-radius: 40px;
+            font-size: 1rem;
+            background: #FCFAFE;
+        }
+        .form-control:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        textarea.form-control { border-radius: 24px; min-height: 100px; }
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-input {
+            position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;
+        }
+        .file-input-label {
+            display: block;
+            padding: 0.8rem;
+            background: #F0E8F5;
+            border: 1px dashed var(--secondary);
+            border-radius: 40px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        .file-input-label:hover,
+        .file-input-label:focus-within {
+            background: #E5D5F0;
+        }
+        .image-preview { max-width: 180px; margin-top: 1rem; display: none; border-radius: 20px; border: 2px solid var(--gold-light); }
+        
+        /* tables */
+        .admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: 24px; overflow: hidden; margin-top: 1rem;}
+        .admin-table th { background: #E2D4EA; color: var(--dark); padding: 1rem; }
+        .admin-table td { padding: 1rem; border-bottom: 1px solid #EADDF2; }
+        .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: 12px; }
+        .action-btn { 
+            padding: 0.5rem 1rem; 
+            border: none; 
+            border-radius: 40px; 
+            cursor: pointer; 
+            margin-right: 0.3rem;
+            transition: all 0.2s;
+        }
+        .action-btn:hover,
+        .action-btn:focus {
+            transform: translateY(-2px);
+            outline: none;
+        }
+        .edit-btn { background: var(--primary); color: white; }
+        .edit-btn:hover,
+        .edit-btn:focus {
+            background: #5A3E6E;
+        }
+        .delete-btn { background: var(--danger); color: white; }
+        .delete-btn:hover,
+        .delete-btn:focus {
+            background: #a04530;
+        }
+        .approve-btn { background: var(--success); color: white; }
+        .small-badge { background: #3E2A4A; color: white; border-radius: 30px; padding: 0.2rem 0.8rem; font-size:0.8rem;}
+        
+        /* settings & user management extra */
+        .settings-card {
+            background: white; border-radius: 24px; padding: 2rem; border: 1px solid #DECFAB; margin-bottom: 2rem;
+        }
+        .user-row {
+            display: flex; justify-content: space-between; align-items: center; background: #f9f5fc; padding: 1rem; border-radius: 40px; margin-bottom: 0.8rem;
+        }
+        /* color picker */
+        .color-demo {
+            display: flex; gap: 1rem; align-items: center; margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .color-box {
+            width: 40px; height: 40px; border-radius: 10px; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* password modal */
+        .password-modal {
+            display: none; position: fixed; top:0;left:0;width:100%;height:100%;background: rgba(31,20,37,0.8); z-index: 2000; justify-content: center; align-items: center;
+        }
+        .password-modal-content {
+            background: white; padding: 2rem; border-radius: 40px; width: 90%; max-width: 420px; border: 3px solid var(--secondary);
+        }
+        .modal-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 1rem; 
+        }
+        .close-modal { 
+            background: none; 
+            border: none; 
+            font-size: 2rem; 
+            cursor: pointer; 
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .close-modal:hover,
+        .close-modal:focus {
+            background: rgba(0,0,0,0.05);
+            outline: none;
+        }
+        
+        /* footer */
+        footer {
+            background: var(--dark);
+            color: #E7DCF0;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .footer-section h3 { color: var(--secondary); margin-bottom: 1.5rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section ul li a { 
+            color: #CFC0D9; 
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.2rem 0;
+        }
+        .footer-section ul li a:hover,
+        .footer-section ul li a:focus {
+            color: var(--gold-light);
+            outline: none;
+            text-decoration: underline;
+        }
+        .creator-credit { text-align: center; margin: 2rem 0 1rem; background: rgba(201,160,75,0.15); padding: 1rem; border-radius: 40px; color: #EBDBC3;}
+        .copyright { text-align: center; color: #9A88A8; }
+        .social-links { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .social-links a { 
+            background: var(--primary); 
+            color: white; 
+            width: 38px; 
+            height: 38px; 
+            display: inline-flex; 
+            border-radius: 50%; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.2s;
+        }
+        .social-links a:hover,
+        .social-links a:focus {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            outline: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .admin-tabs { justify-content: center; }
+            .admin-tab { padding: 0.7rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">CARTER<span> FASHION</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-section="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-section="gender">Shop</a></li>
+                    <li><a href="#" class="nav-link" data-section="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-section="services">Services</a></li>
+                    <li><a href="#" id="adminLink">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- hero -->
+    <section class="hero" id="homeSection">
+        <div class="container">
+            <h1 id="heroTitle"><strong>CARTER</strong> edit · timeless style</h1>
+            <p id="heroSubtitle">Discover luxury‑infused essentials, from tailored fits to fluid silhouettes.</p>
+            <a href="#" class="btn nav-link" data-section="gender"><span class="btn-text">explore collection</span></a>
+        </div>
+    </section>
+
+    <!-- gender selection -->
+    <section class="gender-section" id="genderSection" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" style="color:white;">your silhouette</h2>
+            <div class="gender-buttons">
+                <button class="btn gender-btn" data-gender="male"><i class="fas fa-mars"></i> <span class="btn-text">him</span></button>
+                <button class="btn gender-btn" data-gender="female"><i class="fas fa-venus"></i> <span class="btn-text">her</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- products with SEARCH -->
+    <section class="products-section" id="productsSection">
+        <div class="container">
+            <button class="back-to-categories" id="backToCategories"><i class="fas fa-arrow-left"></i> <span>back to categories</span></button>
+            <h2 class="category-title" id="categoryTitle"></h2>
+            
+            <!-- SEARCH BAR -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- about -->
+    <section class="about-section" id="aboutSection" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" id="aboutTitle">about CARTER</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p id="aboutText1">Carter Fashion was born in Lagos in 2021 — a bridge between contemporary streetwear and refined elegance. Each piece is crafted with intention.</p>
+                    <p id="aboutText2">We believe clothing is armour: our collections blend structured tailoring with fluid fabrics, celebrating individuality.</p>
+                    <p id="aboutText3">From custom finishes to premium African‑sourced textiles, Carter is a statement of confidence.</p>
+                </div>
+                <div class="about-image"><img src="https://images.unsplash.com/photo-1583744946564-b52dac1f3b1a?q=80&w=1887&auto=format&fit=crop" alt="carter studio"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- services -->
+    <section class="services-section" id="servicesSection" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" id="servicesTitle">the carter experience</h2>
+            <div class="services-grid" id="servicesGrid"></div>
+        </div>
+    </section>
+
+    <!-- ADMIN PANEL – ALL BUTTONS FIXED -->
+    <section class="admin-panel" id="adminSection">
+        <div class="container">
+            <div class="admin-header">
+                <h2 class="section-title">admin · full control</h2>
+                <button class="btn btn-back" id="backToSite"><i class="fas fa-arrow-left"></i> <span class="btn-text">exit</span></button>
+            </div>
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="products">products</button>
+                <button class="admin-tab" data-tab="content">content</button>
+                <button class="admin-tab" data-tab="services">services</button>
+                <button class="admin-tab" data-tab="settings">settings</button>
+                <button class="admin-tab" data-tab="users">users</button>
+            </div>
+            
+            <!-- PRODUCTS TAB -->
+            <div class="admin-content active" id="productsTab">
+                <button class="btn" id="addProductBtn"><i class="fas fa-plus"></i> <span class="btn-text">add product</span></button>
+                <div class="admin-form" id="productForm" style="display:none;">
+                    <h3 id="formTitle">new product</h3>
+                    <form id="productFormElement">
+                        <input type="hidden" id="productId">
+                        <div class="form-group"><label>product name</label><input type="text" id="productName" class="form-control" required></div>
+                        <div class="form-group"><label>category</label>
+                            <select id="productCategory" class="form-control" required>
+                                <option value="">select</option><option value="male">him</option><option value="female">her</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>price (NGN)</label><input type="number" id="productPrice" class="form-control" step="0.01" required></div>
+                        <div class="form-group"><label>WhatsApp link</label><input type="url" id="productWhatsApp" class="form-control" placeholder="https://wa.me/234..." required></div>
+                        <div class="form-group"><label>image</label>
+                            <div class="file-input-container">
+                                <input type="file" id="productImage" class="file-input" accept="image/*">
+                                <label for="productImage" class="file-input-label" id="fileInputLabel">upload image</label>
+                            </div>
+                            <img id="imagePreview" class="image-preview">
+                        </div>
+                        <div class="form-group"><label>description</label><textarea id="productDescription" class="form-control" rows="2"></textarea></div>
+                        <button type="submit" class="btn"><span class="btn-text">save product</span></button>
+                        <button type="button" class="btn btn-secondary" id="cancelForm"><span class="btn-text">cancel</span></button>
+                    </form>
+                </div>
+                <div class="admin-products">
+                    <h3>manage products</h3>
+                    <table class="admin-table">
+                        <thead><tr><th>ID</th><th>name</th><th>cat.</th><th>price</th><th>image</th><th>actions</th></tr></thead>
+                        <tbody id="adminProductsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- CONTENT TAB -->
+            <div class="admin-content" id="contentTab">
+                <div class="admin-form">
+                    <h3>website content</h3>
+                    <form id="contentForm">
+                        <div class="form-group"><label>hero title</label><input type="text" id="heroTitleInput" class="form-control"></div>
+                        <div class="form-group"><label>hero subtitle</label><input type="text" id="heroSubtitleInput" class="form-control"></div>
+                        <div class="form-group"><label>about title</label><input type="text" id="aboutTitleInput" class="form-control"></div>
+                        <div class="form-group"><label>about text 1</label><textarea id="aboutText1Input" class="form-control"></textarea></div>
+                        <div class="form-group"><label>about text 2</label><textarea id="aboutText2Input" class="form-control"></textarea></div>
+                        <div class="form-group"><label>about text 3</label><textarea id="aboutText3Input" class="form-control"></textarea></div>
+                        <div class="form-group"><label>services title</label><input type="text" id="servicesTitleInput" class="form-control"></div>
+                        <button type="submit" class="btn"><span class="btn-text">save content</span></button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- SERVICES TAB -->
+            <div class="admin-content" id="servicesTab">
+                <button class="btn" id="addServiceBtn"><i class="fas fa-plus"></i> <span class="btn-text">add service</span></button>
+                <div class="admin-form" id="serviceForm" style="display:none;">
+                    <h3 id="serviceFormTitle">new service</h3>
+                    <form id="serviceFormElement">
+                        <input type="hidden" id="serviceId">
+                        <div class="form-group"><label>service title</label><input type="text" id="serviceTitle" class="form-control" required></div>
+                        <div class="form-group"><label>description</label><textarea id="serviceDescription" class="form-control" rows="2" required></textarea></div>
+                        <div class="form-group"><label>icon (FontAwesome)</label><input type="text" id="serviceIcon" class="form-control" placeholder="fas fa-gem" required></div>
+                        <button type="submit" class="btn"><span class="btn-text">save service</span></button>
+                        <button type="button" class="btn btn-secondary" id="cancelServiceForm"><span class="btn-text">cancel</span></button>
+                    </form>
+                </div>
+                <div class="admin-products"><h3>manage services</h3><div id="adminServicesTable"></div></div>
+            </div>
+            
+            <!-- SETTINGS TAB -->
+            <div class="admin-content" id="settingsTab">
+                <div class="settings-card">
+                    <h3><i class="fas fa-cog"></i> general settings</h3>
+                    <form id="settingsForm">
+                        <div class="form-group"><label>currency symbol</label><input type="text" id="currencySymbol" class="form-control" value="₦"></div>
+                        <div class="form-group"><label>site title suffix</label><input type="text" id="siteSuffix" class="form-control" value="· CARTER"></div>
+                        <div class="form-group"><label>items per page (shop)</label><input type="number" id="itemsPerPage" class="form-control" value="12"></div>
+                        <div class="form-group"><label>admin password</label><input type="text" id="adminPasswordSetting" class="form-control" placeholder="Enter new password" value=""></div>
+                        <button type="submit" class="btn"><span class="btn-text">update settings</span></button>
+                    </form>
+                </div>
+                <div class="settings-card">
+                    <h3><i class="fas fa-palette"></i> theme colors (LIVE PREVIEW)</h3>
+                    <div class="color-demo">
+                        <div>Primary:</div>
+                        <input type="color" id="primaryColorPicker" value="#3E2A4A">
+                        <div class="color-box" style="background:#3E2A4A;" id="primaryColorBox"></div>
+                    </div>
+                    <div class="color-demo">
+                        <div>Secondary:</div>
+                        <input type="color" id="secondaryColorPicker" value="#C9A04B">
+                        <div class="color-box" style="background:#C9A04B;" id="secondaryColorBox"></div>
+                    </div>
+                    <button class="btn btn-secondary" id="applyColorsBtn"><span class="btn-text">apply colors</span></button>
+                    <button class="btn btn-secondary" id="resetColorsBtn"><span class="btn-text">reset to default</span></button>
+                </div>
+            </div>
+            
+            <!-- USERS TAB -->
+            <div class="admin-content" id="usersTab">
+                <div class="settings-card">
+                    <h3><i class="fas fa-users"></i> staff / admin accounts</h3>
+                    <div id="userList"></div>
+                    <button class="btn" id="addUserBtn"><i class="fas fa-user-plus"></i> <span class="btn-text">add new user</span></button>
+                </div>
+                <div class="admin-form" id="userForm" style="display:none;">
+                    <h4>user details</h4>
+                    <form id="userFormElement">
+                        <input type="hidden" id="userId">
+                        <div class="form-group"><label>username</label><input type="text" id="username" class="form-control" required></div>
+                        <div class="form-group"><label>password</label><input type="text" id="userPassword" class="form-control" placeholder="leave blank to keep"></div>
+                        <div class="form-group"><label>role</label><select id="userRole" class="form-control"><option value="admin">admin</option><option value="editor">editor</option><option value="viewer">viewer</option></select></div>
+                        <button type="submit" class="btn"><span class="btn-text">save user</span></button>
+                        <button type="button" class="btn btn-secondary" id="cancelUserForm"><span class="btn-text">cancel</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- password modal – ALWAYS APPEARS -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-modal-content">
+            <div class="modal-header">
+                <h2>admin access</h2>
+                <button class="close-modal" id="closePassword" aria-label="Close">&times;</button>
+            </div>
+            <p>enter admin password (default: Muktar68@)</p>
+            <form class="password-form" id="passwordForm">
+                <div class="form-group"><label>password</label><input type="password" id="adminPassword" class="form-control" required autocomplete="off"></div>
+                <div style="display:flex; gap:0.5rem; margin-top:1rem; flex-wrap:wrap;">
+                    <button type="button" class="btn btn-back" id="backFromPassword"><i class="fas fa-arrow-left"></i><span class="btn-text">back</span></button>
+                    <button type="submit" class="btn"><span class="btn-text">enter</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><h3>CARTER FASHION</h3><p>modern luxury · crafted for you</p><div class="social-links"><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div>
+                <div class="footer-section"><h3>connect</h3><ul><li><a href="#" class="nav-link" data-section="home">home</a></li><li><a href="#" class="nav-link" data-section="gender">shop</a></li></ul></div>
+                <div class="footer-section"><h3>contact</h3><ul><li><i class="fas fa-map-pin"></i> 14b Idejo, Lagos</li><li><i class="fas fa-phone"></i> +234 801 234 5678</li></ul></div>
+            </div>
+            <div class="creator-credit"><p>website created by <strong>Muqteer</strong> · all buttons fixed · password always required</p></div>
+            <div class="copyright"><p>© 2025 CARTER FASHION. all rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // ---------- ALL BUTTONS FIXED – PASSWORD ALWAYS REQUIRED ----------
+            const ORIGINAL_PASSWORD = "Muktar68@";
+            let adminPassword = ORIGINAL_PASSWORD;
+
+            // Data keys
+            const STORAGE_KEYS = {
+                PRODUCTS: 'carterProducts',
+                SERVICES: 'carterServices',
+                CONTENT: 'carterContent',
+                IMAGES: 'carterImages',
+                SETTINGS: 'carterSettings',
+                USERS: 'carterUsers'
+            };
+
+            // initialize all data
+            function initializeData() {
+                if (!localStorage.getItem(STORAGE_KEYS.PRODUCTS)) {
+                    localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify([
+                        { id:1, name:"cashmere‑blend hoodie", category:"male", price:18500, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20cashmere-blend%20hoodie", image:"https://images.unsplash.com/photo-1556909211-36987daf7b4d?q=80&w=1974&auto=format&fit=crop", description:"soft Italian fabric, relaxed cut." },
+                        { id:2, name:"tailored trouser", category:"male", price:22300, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20tailored%20trouser", image:"https://images.unsplash.com/photo-1473966968600-fa801b8695b1?q=80&w=1974&auto=format&fit=crop", description:"wool blend, pleated front." },
+                        { id:3, name:"silk slip dress", category:"female", price:27900, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20silk%20dress", image:"https://images.unsplash.com/photo-1571907482331-fa1c1b8b38c7?q=80&w=1887&auto=format&fit=crop", description:"champagne silk, adjustable straps." },
+                        { id:4, name:"linen shirt", category:"female", price:13400, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20linen%20shirt", image:"https://images.unsplash.com/photo-1598554747436-c9293d6a588f?q=80&w=1974&auto=format&fit=crop", description:"ivory linen, oversized fit." }
+                    ]));
+                }
+                if (!localStorage.getItem(STORAGE_KEYS.SERVICES)) {
+                    localStorage.setItem(STORAGE_KEYS.SERVICES, JSON.stringify([
+                        { id:1, title:"complimentary tailoring", description:"free alterations on all orders", icon:"fas fa-cut" },
+                        { id:2, title:"swatch service", description:"fabric samples before you buy", icon:"fas fa-swatchbook" },
+                        { id:3, title:"concierge", description:"personal stylist on chat", icon:"fas fa-concierge-bell" }
+                    ]));
+                }
+                if (!localStorage.getItem(STORAGE_KEYS.CONTENT)) {
+                    localStorage.setItem(STORAGE_KEYS.CONTENT, JSON.stringify({
+                        heroTitle: "<strong>CARTER</strong> edit · timeless style",
+                        heroSubtitle: "Discover luxury‑infused essentials, from tailored fits to fluid silhouettes.",
+                        aboutTitle: "about CARTER",
+                        aboutText1: "Carter Fashion was born in Lagos in 2021 — a bridge between contemporary streetwear and refined elegance. Each piece is crafted with intention.",
+                        aboutText2: "We believe clothing is armour: our collections blend structured tailoring with fluid fabrics, celebrating individuality.",
+                        aboutText3: "From custom finishes to premium African‑sourced textiles, Carter is a statement of confidence.",
+                        servicesTitle: "the carter experience"
+                    }));
+                }
+                if (!localStorage.getItem(STORAGE_KEYS.IMAGES)) localStorage.setItem(STORAGE_KEYS.IMAGES, JSON.stringify({}));
+                
+                if (!localStorage.getItem(STORAGE_KEYS.SETTINGS)) {
+                    localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify({
+                        currency: "₦",
+                        siteSuffix: "· CARTER",
+                        itemsPerPage: 12,
+                        adminPassword: ORIGINAL_PASSWORD
+                    }));
+                }
+                
+                if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+                    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify([
+                        { id:1, username: "carter_admin", password: btoa(ORIGINAL_PASSWORD), role: "admin" },
+                        { id:2, username: "editor", password: btoa("edit123"), role: "editor" }
+                    ]));
+                }
+            }
+            initializeData();
+
+            // helpers
+            function getProducts() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PRODUCTS)); }
+            function setProducts(p) { localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(p)); }
+            function getServices() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.SERVICES)); }
+            function setServices(s) { localStorage.setItem(STORAGE_KEYS.SERVICES, JSON.stringify(s)); }
+            function getContent() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.CONTENT)); }
+            function setContent(c) { localStorage.setItem(STORAGE_KEYS.CONTENT, JSON.stringify(c)); }
+            function getImages() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.IMAGES)); }
+            function setImages(i) { localStorage.setItem(STORAGE_KEYS.IMAGES, JSON.stringify(i)); }
+            function getSettings() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.SETTINGS)); }
+            function setSettings(s) { localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(s)); }
+            function getUsers() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS)); }
+            function setUsers(u) { localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(u)); }
+
+            // DOM elements
+            const sections = {
+                home: document.getElementById('homeSection'),
+                gender: document.getElementById('genderSection'),
+                products: document.getElementById('productsSection'),
+                about: document.getElementById('aboutSection'),
+                services: document.getElementById('servicesSection'),
+                admin: document.getElementById('adminSection')
+            };
+            const productsGrid = document.getElementById('productsGrid');
+            const adminProductsTable = document.getElementById('adminProductsTable');
+            const adminServicesDiv = document.getElementById('adminServicesTable');
+            const productForm = document.getElementById('productForm');
+            const serviceForm = document.getElementById('serviceForm');
+            const fileInput = document.getElementById('productImage');
+            const imagePreview = document.getElementById('imagePreview');
+            const fileInputLabel = document.getElementById('fileInputLabel');
+            let currentGender = 'male';
+            let currentSearchTerm = '';
+
+            // ---------- RENDER FUNCTIONS ----------
+            function displayProductsByGender(gender, searchTerm = '') {
+                let prods = getProducts().filter(p => p.category === gender);
+                
+                if (searchTerm.trim() !== '') {
+                    const term = searchTerm.toLowerCase().trim();
+                    prods = prods.filter(p => 
+                        p.name.toLowerCase().includes(term) || 
+                        (p.description && p.description.toLowerCase().includes(term))
+                    );
+                }
+                
+                productsGrid.innerHTML = '';
+                if (!prods.length) { 
+                    productsGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">no products found</p>'; 
+                    return; 
+                }
+                
+                const images = getImages();
+                const currency = getSettings().currency;
+                prods.forEach(p => {
+                    const imgSrc = images[p.id] || p.image;
+                    const card = document.createElement('div'); card.className = 'product-card';
+                    card.innerHTML = `
+                        <img src="${imgSrc}" class="product-image" alt="${p.name}">
+                        <div class="product-info">
+                            <span class="product-category ${p.category==='male'?'category-male':'category-female'}">${p.category==='male'?'him':'her'}</span>
+                            <h3 class="product-title">${p.name}</h3>
+                            <p class="product-price">${currency}${p.price.toLocaleString()}</p>
+                            <p class="product-description">${p.description || ''}</p>
+                            <a href="${p.whatsapp}" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span class="btn-text">order on whatsapp</span></a>
+                        </div>`;
+                    productsGrid.appendChild(card);
+                });
+            }
+
+            function displayServicesFront() {
+                const sv = getServices();
+                const grid = document.getElementById('servicesGrid');
+                grid.innerHTML = '';
+                sv.forEach(s => {
+                    grid.innerHTML += `<div class="service-card"><div class="service-icon"><i class="${s.icon}"></i></div><h3>${s.title}</h3><p>${s.description}</p></div>`;
+                });
+            }
+
+            function loadContentToUI() {
+                const c = getContent();
+                document.getElementById('heroTitle').innerHTML = c.heroTitle;
+                document.getElementById('heroSubtitle').innerText = c.heroSubtitle;
+                document.getElementById('aboutTitle').innerText = c.aboutTitle;
+                document.getElementById('aboutText1').innerText = c.aboutText1;
+                document.getElementById('aboutText2').innerText = c.aboutText2;
+                document.getElementById('aboutText3').innerText = c.aboutText3;
+                document.getElementById('servicesTitle').innerText = c.servicesTitle;
+                document.getElementById('heroTitleInput').value = c.heroTitle.replace(/<[^>]*>/g, '');
+                document.getElementById('heroSubtitleInput').value = c.heroSubtitle;
+                document.getElementById('aboutTitleInput').value = c.aboutTitle;
+                document.getElementById('aboutText1Input').value = c.aboutText1;
+                document.getElementById('aboutText2Input').value = c.aboutText2;
+                document.getElementById('aboutText3Input').value = c.aboutText3;
+                document.getElementById('servicesTitleInput').value = c.servicesTitle;
+            }
+
+            function displayAdminProducts() {
+                const prods = getProducts();
+                const images = getImages();
+                const currency = getSettings().currency;
+                adminProductsTable.innerHTML = '';
+                prods.forEach(p => {
+                    const imgSrc = images[p.id] || p.image;
+                    adminProductsTable.innerHTML += `<tr><td>${p.id}</td><td>${p.name}</td><td>${p.category}</td><td>${currency}${p.price}</td><td><img src="${imgSrc}"></td><td><button class="action-btn edit-btn" data-id="${p.id}"><i class="fas fa-edit"></i> edit</button> <button class="action-btn delete-btn" data-id="${p.id}"><i class="fas fa-trash"></i> del</button></td></tr>`;
+                });
+                attachProductActions();
+            }
+
+            function attachProductActions() {
+                document.querySelectorAll('.edit-btn').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); editProduct(parseInt(b.dataset.id)); });
+                });
+                document.querySelectorAll('.delete-btn').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); deleteProduct(parseInt(b.dataset.id)); });
+                });
+            }
+
+            function displayAdminServices() {
+                const sv = getServices();
+                adminServicesDiv.innerHTML = '';
+                sv.forEach(s => {
+                    const div = document.createElement('div'); div.className = 'admin-form'; div.style.marginBottom = '0.8rem';
+                    div.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center;"><div><h4>${s.title}</h4><p>${s.description} <i class="${s.icon}"></i></p></div><div><button class="action-btn edit-btn edit-service" data-id="${s.id}">edit</button> <button class="action-btn delete-btn delete-service" data-id="${s.id}">delete</button></div></div>`;
+                    adminServicesDiv.appendChild(div);
+                });
+                document.querySelectorAll('.edit-service').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); editService(parseInt(b.dataset.id)); });
+                });
+                document.querySelectorAll('.delete-service').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); deleteService(parseInt(b.dataset.id)); });
+                });
+            }
+
+            function displayUsers() {
+                const users = getUsers();
+                const container = document.getElementById('userList');
+                container.innerHTML = '';
+                users.forEach(u => {
+                    const row = document.createElement('div'); row.className = 'user-row';
+                    row.innerHTML = `<span><strong>${u.username}</strong> (${u.role})</span> <div><button class="action-btn edit-btn edit-user" data-id="${u.id}">edit</button> <button class="action-btn delete-btn delete-user" data-id="${u.id}">delete</button></div>`;
+                    container.appendChild(row);
+                });
+                document.querySelectorAll('.edit-user').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); editUser(parseInt(b.dataset.id)); });
+                });
+                document.querySelectorAll('.delete-user').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); deleteUser(parseInt(b.dataset.id)); });
+                });
+            }
+
+            // ---------- CRUD ----------
+            function editProduct(id) {
+                const p = getProducts().find(x => x.id === id);
+                if (!p) return;
+                document.getElementById('productId').value = p.id;
+                document.getElementById('productName').value = p.name;
+                document.getElementById('productCategory').value = p.category;
+                document.getElementById('productPrice').value = p.price;
+                document.getElementById('productWhatsApp').value = p.whatsapp;
+                document.getElementById('productDescription').value = p.description || '';
+                const images = getImages();
+                if (images[p.id]) { imagePreview.src = images[p.id]; imagePreview.style.display = 'block'; fileInputLabel.textContent = 'change image'; } else { imagePreview.style.display = 'none'; }
+                document.getElementById('formTitle').innerText = 'edit product';
+                productForm.style.display = 'block';
+            }
+            function deleteProduct(id) {
+                if (confirm('delete product?')) {
+                    let prods = getProducts().filter(p => p.id !== id);
+                    let img = getImages(); delete img[id];
+                    setProducts(prods); setImages(img);
+                    displayAdminProducts(); displayProductsByGender(currentGender, currentSearchTerm);
+                    showNotif('product deleted');
+                }
+            }
+            async function saveProduct(e) {
+                e.preventDefault(); 
+                const btn = e.target.querySelector('button[type=submit]'); setLoading(btn, true);
+                setTimeout(async () => {
+                    const id = document.getElementById('productId').value;
+                    const name = document.getElementById('productName').value;
+                    const cat = document.getElementById('productCategory').value;
+                    const price = parseFloat(document.getElementById('productPrice').value);
+                    const wa = document.getElementById('productWhatsApp').value;
+                    const desc = document.getElementById('productDescription').value;
+                    const file = fileInput.files[0];
+                    let prods = getProducts(); let images = getImages();
+                    let newId = id ? parseInt(id) : (prods.length ? Math.max(...prods.map(p=>p.id))+1 : 1);
+                    let imageData = null;
+                    if (file) { try { imageData = await imageToBase64(file); } catch (er) { showNotif('image error','error'); setLoading(btn,false); return; } }
+                    if (id) {
+                        const idx = prods.findIndex(p => p.id === parseInt(id));
+                        if (idx>=0) { prods[idx] = { id:parseInt(id), name, category:cat, price, whatsapp:wa, description:desc, image:prods[idx].image }; }
+                    } else { prods.push({ id:newId, name, category:cat, price, whatsapp:wa, description:desc, image:'' }); }
+                    if (imageData) images[newId] = imageData;
+                    setProducts(prods); setImages(images);
+                    displayAdminProducts(); displayProductsByGender(currentGender, currentSearchTerm);
+                    hideProductForm(); showNotif(id?'updated':'added'); setLoading(btn,false);
+                },800);
+            }
+
+            function editService(id) {
+                const s = getServices().find(x => x.id === id);
+                if (!s) return;
+                document.getElementById('serviceId').value = s.id;
+                document.getElementById('serviceTitle').value = s.title;
+                document.getElementById('serviceDescription').value = s.description;
+                document.getElementById('serviceIcon').value = s.icon;
+                document.getElementById('serviceFormTitle').innerText = 'edit service';
+                serviceForm.style.display = 'block';
+            }
+            function deleteService(id) {
+                if (confirm('delete service?')) { setServices(getServices().filter(s => s.id !== id)); displayAdminServices(); displayServicesFront(); showNotif('service removed'); }
+            }
+            function saveService(e) {
+                e.preventDefault(); const btn = e.target.querySelector('button[type=submit]'); setLoading(btn,true);
+                setTimeout(() => {
+                    let sv = getServices();
+                    const id = document.getElementById('serviceId').value;
+                    const title = document.getElementById('serviceTitle').value;
+                    const desc = document.getElementById('serviceDescription').value;
+                    const icon = document.getElementById('serviceIcon').value;
+                    if (id) {
+                        const idx = sv.findIndex(s => s.id === parseInt(id));
+                        if (idx>=0) sv[idx] = { id:parseInt(id), title, description:desc, icon };
+                    } else {
+                        const newId = sv.length ? Math.max(...sv.map(s=>s.id))+1 : 1;
+                        sv.push({ id:newId, title, description:desc, icon });
+                    }
+                    setServices(sv); displayAdminServices(); displayServicesFront(); hideServiceForm(); showNotif('service saved'); setLoading(btn,false);
+                },600);
+            }
+
+            function editUser(id) {
+                const u = getUsers().find(x => x.id === id);
+                if (!u) return;
+                document.getElementById('userId').value = u.id;
+                document.getElementById('username').value = u.username;
+                document.getElementById('userPassword').value = '';
+                document.getElementById('userRole').value = u.role;
+                document.getElementById('userForm').style.display = 'block';
+            }
+            function deleteUser(id) {
+                if (id === 1) { showNotif('cannot delete primary admin','error'); return; }
+                if (confirm('delete user?')) { setUsers(getUsers().filter(u => u.id !== id)); displayUsers(); showNotif('user deleted'); }
+            }
+
+            function loadSettingsToForm() {
+                const s = getSettings();
+                document.getElementById('currencySymbol').value = s.currency;
+                document.getElementById('siteSuffix').value = s.siteSuffix;
+                document.getElementById('itemsPerPage').value = s.itemsPerPage;
+                document.getElementById('adminPasswordSetting').value = '';
+                adminPassword = s.adminPassword;
+                
+                const root = document.documentElement;
+                const primary = getComputedStyle(root).getPropertyValue('--primary').trim();
+                const secondary = getComputedStyle(root).getPropertyValue('--secondary').trim();
+                document.getElementById('primaryColorPicker').value = rgbToHex(primary) || '#3E2A4A';
+                document.getElementById('secondaryColorPicker').value = rgbToHex(secondary) || '#C9A04B';
+                document.getElementById('primaryColorBox').style.background = primary;
+                document.getElementById('secondaryColorBox').style.background = secondary;
+            }
+
+            function rgbToHex(rgb) {
+                if (!rgb) return null;
+                const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                if (!match) return rgb;
+                return '#' + ((1 << 24) + (parseInt(match[1]) << 16) + (parseInt(match[2]) << 8) + parseInt(match[3])).toString(16).slice(1);
+            }
+
+            function applyColors(primary, secondary) {
+                document.documentElement.style.setProperty('--primary', primary);
+                document.documentElement.style.setProperty('--secondary', secondary);
+                document.getElementById('primaryColorBox').style.background = primary;
+                document.getElementById('secondaryColorBox').style.background = secondary;
+            }
+
+            function imageToBase64(f) { return new Promise((res,rej) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); r.onerror = rej; }); }
+            function setLoading(btn,state) { if (state) { btn.disabled = true; btn.classList.add('btn-loading'); } else { btn.disabled = false; btn.classList.remove('btn-loading'); } }
+            function showNotif(msg, type='success') { const n = document.createElement('div'); n.textContent=msg; n.style.cssText='position:fixed;top:20px;right:20px;background:'+(type==='success'?'#25D366':'#c0392b')+';color:white;padding:1rem 1.5rem;border-radius:40px;z-index:9999;'; document.body.appendChild(n); setTimeout(()=>{ n.remove(); },2500); }
+            function hideProductForm() { productForm.style.display='none'; document.getElementById('productFormElement').reset(); imagePreview.style.display='none'; fileInputLabel.textContent='upload image'; }
+            function hideServiceForm() { serviceForm.style.display='none'; document.getElementById('serviceFormElement').reset(); }
+            
+            function showSection(sec) {
+                Object.values(sections).forEach(s => { if (s) s.style.display = 'none'; }); 
+                if (sections[sec]) sections[sec].style.display = 'block'; 
+                if (sec === 'services') displayServicesFront(); 
+                if (sec === 'admin') {
+                    displayAdminProducts(); 
+                    displayAdminServices(); 
+                    displayUsers(); 
+                    loadSettingsToForm(); 
+                }
+                if (sec === 'products' && currentGender) {
+                    displayProductsByGender(currentGender, currentSearchTerm);
+                }
+            }
+            
+            function showGenderProducts(gender) { 
+                currentGender = gender; 
+                currentSearchTerm = '';
+                document.getElementById('searchInput').value = '';
+                document.getElementById('categoryTitle').innerHTML = `<i class="fas fa-${gender==='male'?'mars':'venus'}"></i> <span>${gender==='male'?'him':'her'} collection</span>`; 
+                displayProductsByGender(gender, ''); 
+                sections.gender.style.display='none'; 
+                sections.products.style.display='block'; 
+            }
+
+            // ---------- EVENT LISTENERS – ALL BUTTONS FIXED ----------
+            document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); showSection(a.dataset.section); }));
+            
+            document.querySelectorAll('.gender-btn').forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); showGenderProducts(b.dataset.gender); }));
+            
+            document.getElementById('backToCategories').addEventListener('click', (e) => { 
+                e.preventDefault();
+                sections.products.style.display='none'; 
+                sections.gender.style.display='block'; 
+            });
+            
+            document.getElementById('searchBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                currentSearchTerm = document.getElementById('searchInput').value;
+                displayProductsByGender(currentGender, currentSearchTerm);
+            });
+            
+            document.getElementById('searchInput').addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    currentSearchTerm = e.target.value;
+                    displayProductsByGender(currentGender, currentSearchTerm);
+                }
+            });
+            
+            document.getElementById('adminLink').addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                document.getElementById('passwordModal').style.display = 'flex'; 
+                document.getElementById('adminPassword').value = '';
+            });
+            
+            document.getElementById('closePassword').addEventListener('click', (e)=> {
+                e.preventDefault();
+                document.getElementById('passwordModal').style.display = 'none';
+            });
+            
+            document.getElementById('backFromPassword').addEventListener('click', (e)=> { 
+                e.preventDefault();
+                document.getElementById('passwordModal').style.display = 'none'; 
+                showSection('home'); 
+            });
+            
+            document.getElementById('passwordForm').addEventListener('submit', (e) => { 
+                e.preventDefault(); 
+                const pwd = document.getElementById('adminPassword').value; 
+                if (pwd === adminPassword) { 
+                    document.getElementById('passwordModal').style.display = 'none'; 
+                    showSection('admin');
+                    showNotif('welcome carter'); 
+                } else { 
+                    showNotif('wrong password','error'); 
+                } 
+            });
+            
+            document.getElementById('backToSite').addEventListener('click', (e) => { 
+                e.preventDefault();
+                showSection('home'); 
+            });
+            
+            document.querySelectorAll('.admin-tab').forEach(tab => tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active')); 
+                this.classList.add('active');
+                document.querySelectorAll('.admin-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(this.dataset.tab + 'Tab').classList.add('active');
+            }));
+            
+            document.getElementById('addProductBtn').addEventListener('click', (e)=>{ 
+                e.preventDefault();
+                document.getElementById('formTitle').innerText = 'add product'; 
+                document.getElementById('productId').value = ''; 
+                document.getElementById('productFormElement').reset(); 
+                imagePreview.style.display = 'none'; 
+                productForm.style.display = 'block'; 
+            });
+            
+            document.getElementById('cancelForm').addEventListener('click', (e) => {
+                e.preventDefault();
+                hideProductForm();
+            });
+            
+            document.getElementById('addServiceBtn').addEventListener('click', (e)=>{ 
+                e.preventDefault();
+                document.getElementById('serviceFormTitle').innerText = 'add service'; 
+                document.getElementById('serviceFormElement').reset(); 
+                serviceForm.style.display = 'block'; 
+            });
+            
+            document.getElementById('cancelServiceForm').addEventListener('click', (e) => {
+                e.preventDefault();
+                hideServiceForm();
+            });
+            
+            document.getElementById('productFormElement').addEventListener('submit', saveProduct);
+            document.getElementById('serviceFormElement').addEventListener('submit', saveService);
+            
+            fileInput.addEventListener('change', function() { 
+                if (this.files?.[0]) { 
+                    const reader = new FileReader(); 
+                    reader.onload = e => { 
+                        imagePreview.src = e.target.result; 
+                        imagePreview.style.display = 'block'; 
+                        fileInputLabel.textContent = 'change image'; 
+                    }; 
+                    reader.readAsDataURL(this.files[0]); 
+                } 
+            });
+
+            document.getElementById('addUserBtn')?.addEventListener('click', (e)=>{
+                e.preventDefault();
+                document.getElementById('userId').value = '';
+                document.getElementById('username').value = '';
+                document.getElementById('userPassword').value = '';
+                document.getElementById('userRole').value = 'editor';
+                document.getElementById('userForm').style.display = 'block';
+            });
+            
+            document.getElementById('cancelUserForm')?.addEventListener('click', (e)=>{
+                e.preventDefault();
+                document.getElementById('userForm').style.display='none';
+            });
+            
+            document.getElementById('userFormElement')?.addEventListener('submit', (e)=>{
+                e.preventDefault(); 
+                const btn = e.target.querySelector('button[type=submit]'); 
+                setLoading(btn,true);
+                setTimeout(() => {
+                    let users = getUsers();
+                    const id = document.getElementById('userId').value;
+                    const username = document.getElementById('username').value;
+                    const pwd = document.getElementById('userPassword').value;
+                    const role = document.getElementById('userRole').value;
+                    if (id) {
+                        const idx = users.findIndex(u => u.id === parseInt(id));
+                        if (idx>=0) { 
+                            users[idx].username = username; 
+                            if (pwd) users[idx].password = btoa(pwd);
+                            users[idx].role = role;
+                        }
+                    } else {
+                        const newId = users.length ? Math.max(...users.map(u=>u.id))+1 : 3;
+                        users.push({ id:newId, username, password: btoa(pwd || 'default123'), role });
+                    }
+                    setUsers(users); 
+                    displayUsers(); 
+                    document.getElementById('userForm').style.display='none'; 
+                    showNotif('user saved'); 
+                    setLoading(btn,false);
+                },500);
+            });
+
+            document.getElementById('settingsForm')?.addEventListener('submit', (e)=>{
+                e.preventDefault(); 
+                const newPwd = document.getElementById('adminPasswordSetting').value;
+                const settings = {
+                    currency: document.getElementById('currencySymbol').value,
+                    siteSuffix: document.getElementById('siteSuffix').value,
+                    itemsPerPage: parseInt(document.getElementById('itemsPerPage').value),
+                    adminPassword: newPwd ? newPwd : adminPassword
+                };
+                setSettings(settings);
+                if (newPwd) adminPassword = newPwd;
+                showNotif('settings updated');
+                displayProductsByGender(currentGender, currentSearchTerm);
+                document.getElementById('adminPasswordSetting').value = '';
+            });
+            
+            document.getElementById('applyColorsBtn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                const primary = document.getElementById('primaryColorPicker').value;
+                const secondary = document.getElementById('secondaryColorPicker').value;
+                applyColors(primary, secondary);
+                showNotif('colors applied');
+            });
+            
+            document.getElementById('resetColorsBtn')?.addEventListener('click', (e)=> {
+                e.preventDefault();
+                applyColors('#3E2A4A', '#C9A04B');
+                document.getElementById('primaryColorPicker').value = '#3E2A4A';
+                document.getElementById('secondaryColorPicker').value = '#C9A04B';
+                showNotif('colors reset to default');
+            });
+
+            document.getElementById('contentForm').addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                const btn = e.target.querySelector('button[type=submit]'); 
+                setLoading(btn,true);
+                setTimeout(() => {
+                    const c = {
+                        heroTitle: document.getElementById('heroTitleInput').value,
+                        heroSubtitle: document.getElementById('heroSubtitleInput').value,
+                        aboutTitle: document.getElementById('aboutTitleInput').value,
+                        aboutText1: document.getElementById('aboutText1Input').value,
+                        aboutText2: document.getElementById('aboutText2Input').value,
+                        aboutText3: document.getElementById('aboutText3Input').value,
+                        servicesTitle: document.getElementById('servicesTitleInput').value
+                    };
+                    setContent(c);
+                    loadContentToUI();
+                    showNotif('content updated');
+                    setLoading(btn,false);
+                },600);
+            });
+
+            displayServicesFront(); 
+            loadContentToUI(); 
+            showSection('home');
+            
+            setTimeout(() => {
+                const root = getComputedStyle(document.documentElement);
+                document.getElementById('primaryColorPicker').value = rgbToHex(root.getPropertyValue('--primary').trim()) || '#3E2A4A';
+                document.getElementById('secondaryColorPicker').value = rgbToHex(root.getPropertyValue('--secondary').trim()) || '#C9A04B';
+            }, 100);
+        })();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARTER · all buttons fixed · admin always asks password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CARTER FASHION – ALL BUTTONS FIXED – EVERYTHING WORKS */
+        :root {
+            --primary: #3E2A4A;
+            --secondary: #C9A04B;
+            --light: #F8F3FA;
+            --dark: #1F1425;
+            --success: #25D366;
+            --warning: #f39c12;
+            --danger: #c0392b;
+            --male: #4E3D5C;
+            --female: #B8739F;
+            --gold-light: #E3C684;
+            --bg-soft: #FCF9FF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-soft);
+            color: #2D1F33;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: white;
+            text-decoration: none;
+            border-left: 4px solid var(--secondary);
+            padding-left: 14px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 0;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s;
+            cursor: pointer;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+        }
+        
+        nav ul li a:hover,
+        nav ul li a:focus {
+            color: var(--secondary);
+            outline: none;
+        }
+        
+        /* hero */
+        .hero {
+            background: linear-gradient(rgba(31,20,37,0.7), rgba(62,42,74,0.8)), url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 30%;
+            color: white;
+            padding: 7rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .hero h1 strong {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn:hover,
+        .btn:focus {
+            background-color: #B4883A;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+            outline: none;
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-whatsapp {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-whatsapp:hover,
+        .btn-whatsapp:focus {
+            background-color: #128C7E;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #C1B3C7;
+            color: #1F1425;
+        }
+        
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #A28FB0;
+            color: white;
+        }
+        
+        .btn-back {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-back:hover,
+        .btn-back:focus {
+            background-color: #2A1C33;
+            color: var(--secondary);
+        }
+        
+        /* loading spinner */
+        .btn-loading .btn-text {
+            visibility: hidden;
+        }
+        
+        .btn-loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 0.9s ease infinite;
+        }
+        
+        @keyframes button-loading-spinner {
+            from { transform: rotate(0turn); }
+            to { transform: rotate(1turn); }
+        }
+        
+        /* gender section */
+        .gender-section {
+            padding: 5rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(62,42,74,0.85), rgba(31,20,37,0.9)), url('https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=1887&auto=format&fit=crop');
+            background-size: cover;
+            color: white;
+        }
+        
+        .gender-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .gender-btn {
+            padding: 2rem 3rem;
+            font-size: 1.6rem;
+            border-radius: 60px;
+            min-width: 250px;
+            background: rgba(201,160,75,0.9);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--gold-light);
+            color: #1F1425;
+            font-weight: 500;
+        }
+        
+        .gender-btn:hover,
+        .gender-btn:focus {
+            background: var(--secondary);
+            color: #000;
+            outline: none;
+        }
+        
+        /* products section */
+        .products-section {
+            padding: 4rem 0;
+            display: none;
+            background-color: var(--bg-soft);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        .section-title i, .section-title span {
+            font-weight: 400;
+            color: var(--secondary);
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(201,160,75,0.1);
+            padding: 1rem;
+            border-radius: 60px;
+        }
+        
+        .back-to-categories {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+        }
+        
+        .back-to-categories:hover,
+        .back-to-categories:focus {
+            color: var(--secondary);
+            background: rgba(201,160,75,0.1);
+            outline: none;
+        }
+        
+        /* search bar */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 2rem auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 0.9rem 1.5rem;
+            border: 2px solid var(--gold-light);
+            border-radius: 40px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .search-input:focus {
+            border-color: var(--secondary);
+        }
+        .search-btn {
+            padding: 0.9rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .search-btn:hover,
+        .search-btn:focus {
+            background: var(--secondary);
+            color: var(--dark);
+            outline: none;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(62,42,74,0.08);
+            transition: transform 0.25s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(201,160,75,0.2);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 30px rgba(62,42,74,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--gold-light);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark);
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+        
+        .product-description {
+            color: #4A3F50;
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+        
+        .product-category {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: white;
+            width: fit-content;
+        }
+        .category-male { background-color: var(--male); }
+        .category-female { background-color: var(--female); }
+        
+        /* about + services */
+        .about-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text h2 { color: var(--primary); margin-bottom: 1.5rem; }
+        .about-text p { margin-bottom: 1rem; color: #2A1F30; }
+        .about-image img { width: 100%; border-radius: 30px; box-shadow: 0 20px 30px rgba(0,0,0,0.1); border: 3px solid var(--gold-light);}
+        
+        .services-section {
+            padding: 5rem 0;
+            background: #F5EEFA;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 32px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: 0.2s;
+            border: 1px solid #EBDDCB;
+        }
+        .service-card:hover {
+            transform: scale(1.02);
+            border-color: var(--secondary);
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* --- COMPLETE ADMIN PANEL FEATURES --- */
+        .admin-panel {
+            padding: 4rem 0;
+            display: none;
+            background: #F1EAF5;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .admin-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #D8C5E3;
+            flex-wrap: wrap;
+        }
+        .admin-tab {
+            padding: 0.9rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .admin-tab:hover,
+        .admin-tab:focus {
+            color: var(--secondary);
+            outline: none;
+        }
+        .admin-tab.active {
+            border-bottom: 3px solid var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .admin-content { display: none; }
+        .admin-content.active { display: block; }
+        
+        /* forms & cards */
+        .admin-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid #DECFAB;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--primary);}
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #D2C1DD;
+            border-radius: 40px;
+            font-size: 1rem;
+            background: #FCFAFE;
+        }
+        .form-control:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        textarea.form-control { border-radius: 24px; min-height: 100px; }
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-input {
+            position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;
+        }
+        .file-input-label {
+            display: block;
+            padding: 0.8rem;
+            background: #F0E8F5;
+            border: 1px dashed var(--secondary);
+            border-radius: 40px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        .file-input-label:hover,
+        .file-input-label:focus-within {
+            background: #E5D5F0;
+        }
+        .image-preview { max-width: 180px; margin-top: 1rem; display: none; border-radius: 20px; border: 2px solid var(--gold-light); }
+        
+        /* tables */
+        .admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: 24px; overflow: hidden; margin-top: 1rem;}
+        .admin-table th { background: #E2D4EA; color: var(--dark); padding: 1rem; }
+        .admin-table td { padding: 1rem; border-bottom: 1px solid #EADDF2; }
+        .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: 12px; }
+        .action-btn { 
+            padding: 0.5rem 1rem; 
+            border: none; 
+            border-radius: 40px; 
+            cursor: pointer; 
+            margin-right: 0.3rem;
+            transition: all 0.2s;
+        }
+        .action-btn:hover,
+        .action-btn:focus {
+            transform: translateY(-2px);
+            outline: none;
+        }
+        .edit-btn { background: var(--primary); color: white; }
+        .edit-btn:hover,
+        .edit-btn:focus {
+            background: #5A3E6E;
+        }
+        .delete-btn { background: var(--danger); color: white; }
+        .delete-btn:hover,
+        .delete-btn:focus {
+            background: #a04530;
+        }
+        .approve-btn { background: var(--success); color: white; }
+        .small-badge { background: #3E2A4A; color: white; border-radius: 30px; padding: 0.2rem 0.8rem; font-size:0.8rem;}
+        
+        /* settings & user management extra */
+        .settings-card {
+            background: white; border-radius: 24px; padding: 2rem; border: 1px solid #DECFAB; margin-bottom: 2rem;
+        }
+        .user-row {
+            display: flex; justify-content: space-between; align-items: center; background: #f9f5fc; padding: 1rem; border-radius: 40px; margin-bottom: 0.8rem;
+        }
+        /* color picker */
+        .color-demo {
+            display: flex; gap: 1rem; align-items: center; margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .color-box {
+            width: 40px; height: 40px; border-radius: 10px; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* password modal */
+        .password-modal {
+            display: none; position: fixed; top:0;left:0;width:100%;height:100%;background: rgba(31,20,37,0.8); z-index: 2000; justify-content: center; align-items: center;
+        }
+        .password-modal-content {
+            background: white; padding: 2rem; border-radius: 40px; width: 90%; max-width: 420px; border: 3px solid var(--secondary);
+        }
+        .modal-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 1rem; 
+        }
+        .close-modal { 
+            background: none; 
+            border: none; 
+            font-size: 2rem; 
+            cursor: pointer; 
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .close-modal:hover,
+        .close-modal:focus {
+            background: rgba(0,0,0,0.05);
+            outline: none;
+        }
+        
+        /* footer */
+        footer {
+            background: var(--dark);
+            color: #E7DCF0;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .footer-section h3 { color: var(--secondary); margin-bottom: 1.5rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section ul li a { 
+            color: #CFC0D9; 
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.2rem 0;
+        }
+        .footer-section ul li a:hover,
+        .footer-section ul li a:focus {
+            color: var(--gold-light);
+            outline: none;
+            text-decoration: underline;
+        }
+        .creator-credit { text-align: center; margin: 2rem 0 1rem; background: rgba(201,160,75,0.15); padding: 1rem; border-radius: 40px; color: #EBDBC3;}
+        .copyright { text-align: center; color: #9A88A8; }
+        .social-links { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .social-links a { 
+            background: var(--primary); 
+            color: white; 
+            width: 38px; 
+            height: 38px; 
+            display: inline-flex; 
+            border-radius: 50%; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.2s;
+        }
+        .social-links a:hover,
+        .social-links a:focus {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            outline: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .admin-tabs { justify-content: center; }
+            .admin-tab { padding: 0.7rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">CARTER<span> FASHION</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-section="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-section="gender">Shop</a></li>
+                    <li><a href="#" class="nav-link" data-section="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-section="services">Services</a></li>
+                    <li><a href="#" id="adminLink">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- hero -->
+    <section class="hero" id="homeSection">
+        <div class="container">
+            <h1 id="heroTitle"><strong>CARTER</strong> edit · timeless style</h1>
+            <p id="heroSubtitle">Discover luxury‑infused essentials, from tailored fits to fluid silhouettes.</p>
+            <a href="#" class="btn nav-link" data-section="gender"><span class="btn-text">explore collection</span></a>
+        </div>
+    </section>
+
+    <!-- gender selection -->
+    <section class="gender-section" id="genderSection" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" style="color:white;">your silhouette</h2>
+            <div class="gender-buttons">
+                <button class="btn gender-btn" data-gender="male"><i class="fas fa-mars"></i> <span class="btn-text">him</span></button>
+                <button class="btn gender-btn" data-gender="female"><i class="fas fa-venus"></i> <span class="btn-text">her</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- products with SEARCH -->
+    <section class="products-section" id="productsSection">
+        <div class="container">
+            <button class="back-to-categories" id="backToCategories"><i class="fas fa-arrow-left"></i> <span>back to categories</span></button>
+            <h2 class="category-title" id="categoryTitle"></h2>
+            
+            <!-- SEARCH BAR -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- about -->
+    <section class="about-section" id="aboutSection" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" id="aboutTitle">about CARTER</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p id="aboutText1">Carter Fashion was born in Lagos in 2021 — a bridge between contemporary streetwear and refined elegance. Each piece is crafted with intention.</p>
+                    <p id="aboutText2">We believe clothing is armour: our collections blend structured tailoring with fluid fabrics, celebrating individuality.</p>
+                    <p id="aboutText3">From custom finishes to premium African‑sourced textiles, Carter is a statement of confidence.</p>
+                </div>
+                <div class="about-image"><img src="https://images.unsplash.com/photo-1583744946564-b52dac1f3b1a?q=80&w=1887&auto=format&fit=crop" alt="carter studio"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- services -->
+    <section class="services-section" id="servicesSection" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" id="servicesTitle">the carter experience</h2>
+            <div class="services-grid" id="servicesGrid"></div>
+        </div>
+    </section>
+
+    <!-- ADMIN PANEL – ALL BUTTONS FIXED -->
+    <section class="admin-panel" id="adminSection">
+        <div class="container">
+            <div class="admin-header">
+                <h2 class="section-title">admin · full control</h2>
+                <button class="btn btn-back" id="backToSite"><i class="fas fa-arrow-left"></i> <span class="btn-text">exit</span></button>
+            </div>
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="products">products</button>
+                <button class="admin-tab" data-tab="content">content</button>
+                <button class="admin-tab" data-tab="services">services</button>
+                <button class="admin-tab" data-tab="settings">settings</button>
+                <button class="admin-tab" data-tab="users">users</button>
+            </div>
+            
+            <!-- PRODUCTS TAB -->
+            <div class="admin-content active" id="productsTab">
+                <button class="btn" id="addProductBtn"><i class="fas fa-plus"></i> <span class="btn-text">add product</span></button>
+                <div class="admin-form" id="productForm" style="display:none;">
+                    <h3 id="formTitle">new product</h3>
+                    <form id="productFormElement">
+                        <input type="hidden" id="productId">
+                        <div class="form-group"><label>product name</label><input type="text" id="productName" class="form-control" required></div>
+                        <div class="form-group"><label>category</label>
+                            <select id="productCategory" class="form-control" required>
+                                <option value="">select</option><option value="male">him</option><option value="female">her</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>price (NGN)</label><input type="number" id="productPrice" class="form-control" step="0.01" required></div>
+                        <div class="form-group"><label>WhatsApp link</label><input type="url" id="productWhatsApp" class="form-control" placeholder="https://wa.me/234..." required></div>
+                        <div class="form-group"><label>image</label>
+                            <div class="file-input-container">
+                                <input type="file" id="productImage" class="file-input" accept="image/*">
+                                <label for="productImage" class="file-input-label" id="fileInputLabel">upload image</label>
+                            </div>
+                            <img id="imagePreview" class="image-preview">
+                        </div>
+                        <div class="form-group"><label>description</label><textarea id="productDescription" class="form-control" rows="2"></textarea></div>
+                        <button type="submit" class="btn"><span class="btn-text">save product</span></button>
+                        <button type="button" class="btn btn-secondary" id="cancelForm"><span class="btn-text">cancel</span></button>
+                    </form>
+                </div>
+                <div class="admin-products">
+                    <h3>manage products</h3>
+                    <table class="admin-table">
+                        <thead><tr><th>ID</th><th>name</th><th>cat.</th><th>price</th><th>image</th><th>actions</th></tr></thead>
+                        <tbody id="adminProductsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- CONTENT TAB -->
+            <div class="admin-content" id="contentTab">
+                <div class="admin-form">
+                    <h3>website content</h3>
+                    <form id="contentForm">
+                        <div class="form-group"><label>hero title</label><input type="text" id="heroTitleInput" class="form-control"></div>
+                        <div class="form-group"><label>hero subtitle</label><input type="text" id="heroSubtitleInput" class="form-control"></div>
+                        <div class="form-group"><label>about title</label><input type="text" id="aboutTitleInput" class="form-control"></div>
+                        <div class="form-group"><label>about text 1</label><textarea id="aboutText1Input" class="form-control"></textarea></div>
+                        <div class="form-group"><label>about text 2</label><textarea id="aboutText2Input" class="form-control"></textarea></div>
+                        <div class="form-group"><label>about text 3</label><textarea id="aboutText3Input" class="form-control"></textarea></div>
+                        <div class="form-group"><label>services title</label><input type="text" id="servicesTitleInput" class="form-control"></div>
+                        <button type="submit" class="btn"><span class="btn-text">save content</span></button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- SERVICES TAB -->
+            <div class="admin-content" id="servicesTab">
+                <button class="btn" id="addServiceBtn"><i class="fas fa-plus"></i> <span class="btn-text">add service</span></button>
+                <div class="admin-form" id="serviceForm" style="display:none;">
+                    <h3 id="serviceFormTitle">new service</h3>
+                    <form id="serviceFormElement">
+                        <input type="hidden" id="serviceId">
+                        <div class="form-group"><label>service title</label><input type="text" id="serviceTitle" class="form-control" required></div>
+                        <div class="form-group"><label>description</label><textarea id="serviceDescription" class="form-control" rows="2" required></textarea></div>
+                        <div class="form-group"><label>icon (FontAwesome)</label><input type="text" id="serviceIcon" class="form-control" placeholder="fas fa-gem" required></div>
+                        <button type="submit" class="btn"><span class="btn-text">save service</span></button>
+                        <button type="button" class="btn btn-secondary" id="cancelServiceForm"><span class="btn-text">cancel</span></button>
+                    </form>
+                </div>
+                <div class="admin-products"><h3>manage services</h3><div id="adminServicesTable"></div></div>
+            </div>
+            
+            <!-- SETTINGS TAB -->
+            <div class="admin-content" id="settingsTab">
+                <div class="settings-card">
+                    <h3><i class="fas fa-cog"></i> general settings</h3>
+                    <form id="settingsForm">
+                        <div class="form-group"><label>currency symbol</label><input type="text" id="currencySymbol" class="form-control" value="₦"></div>
+                        <div class="form-group"><label>site title suffix</label><input type="text" id="siteSuffix" class="form-control" value="· CARTER"></div>
+                        <div class="form-group"><label>items per page (shop)</label><input type="number" id="itemsPerPage" class="form-control" value="12"></div>
+                        <div class="form-group"><label>admin password</label><input type="text" id="adminPasswordSetting" class="form-control" placeholder="Enter new password" value=""></div>
+                        <button type="submit" class="btn"><span class="btn-text">update settings</span></button>
+                    </form>
+                </div>
+                <div class="settings-card">
+                    <h3><i class="fas fa-palette"></i> theme colors (LIVE PREVIEW)</h3>
+                    <div class="color-demo">
+                        <div>Primary:</div>
+                        <input type="color" id="primaryColorPicker" value="#3E2A4A">
+                        <div class="color-box" style="background:#3E2A4A;" id="primaryColorBox"></div>
+                    </div>
+                    <div class="color-demo">
+                        <div>Secondary:</div>
+                        <input type="color" id="secondaryColorPicker" value="#C9A04B">
+                        <div class="color-box" style="background:#C9A04B;" id="secondaryColorBox"></div>
+                    </div>
+                    <button class="btn btn-secondary" id="applyColorsBtn"><span class="btn-text">apply colors</span></button>
+                    <button class="btn btn-secondary" id="resetColorsBtn"><span class="btn-text">reset to default</span></button>
+                </div>
+            </div>
+            
+            <!-- USERS TAB -->
+            <div class="admin-content" id="usersTab">
+                <div class="settings-card">
+                    <h3><i class="fas fa-users"></i> staff / admin accounts</h3>
+                    <div id="userList"></div>
+                    <button class="btn" id="addUserBtn"><i class="fas fa-user-plus"></i> <span class="btn-text">add new user</span></button>
+                </div>
+                <div class="admin-form" id="userForm" style="display:none;">
+                    <h4>user details</h4>
+                    <form id="userFormElement">
+                        <input type="hidden" id="userId">
+                        <div class="form-group"><label>username</label><input type="text" id="username" class="form-control" required></div>
+                        <div class="form-group"><label>password</label><input type="text" id="userPassword" class="form-control" placeholder="leave blank to keep"></div>
+                        <div class="form-group"><label>role</label><select id="userRole" class="form-control"><option value="admin">admin</option><option value="editor">editor</option><option value="viewer">viewer</option></select></div>
+                        <button type="submit" class="btn"><span class="btn-text">save user</span></button>
+                        <button type="button" class="btn btn-secondary" id="cancelUserForm"><span class="btn-text">cancel</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- password modal – ALWAYS APPEARS -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-modal-content">
+            <div class="modal-header">
+                <h2>admin access</h2>
+                <button class="close-modal" id="closePassword" aria-label="Close">&times;</button>
+            </div>
+            <p>enter admin password (default: Muktar68@)</p>
+            <form class="password-form" id="passwordForm">
+                <div class="form-group"><label>password</label><input type="password" id="adminPassword" class="form-control" required autocomplete="off"></div>
+                <div style="display:flex; gap:0.5rem; margin-top:1rem; flex-wrap:wrap;">
+                    <button type="button" class="btn btn-back" id="backFromPassword"><i class="fas fa-arrow-left"></i><span class="btn-text">back</span></button>
+                    <button type="submit" class="btn"><span class="btn-text">enter</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><h3>CARTER FASHION</h3><p>modern luxury · crafted for you</p><div class="social-links"><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div>
+                <div class="footer-section"><h3>connect</h3><ul><li><a href="#" class="nav-link" data-section="home">home</a></li><li><a href="#" class="nav-link" data-section="gender">shop</a></li></ul></div>
+                <div class="footer-section"><h3>contact</h3><ul><li><i class="fas fa-map-pin"></i> 14b Idejo, Lagos</li><li><i class="fas fa-phone"></i> +234 801 234 5678</li></ul></div>
+            </div>
+            <div class="creator-credit"><p>website created by <strong>Muqteer</strong> · all buttons fixed · password always required</p></div>
+            <div class="copyright"><p>© 2025 CARTER FASHION. all rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // ---------- ALL BUTTONS FIXED – PASSWORD ALWAYS REQUIRED ----------
+            const ORIGINAL_PASSWORD = "Muktar68@";
+            let adminPassword = ORIGINAL_PASSWORD;
+
+            // Data keys
+            const STORAGE_KEYS = {
+                PRODUCTS: 'carterProducts',
+                SERVICES: 'carterServices',
+                CONTENT: 'carterContent',
+                IMAGES: 'carterImages',
+                SETTINGS: 'carterSettings',
+                USERS: 'carterUsers'
+            };
+
+            // initialize all data
+            function initializeData() {
+                if (!localStorage.getItem(STORAGE_KEYS.PRODUCTS)) {
+                    localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify([
+                        { id:1, name:"cashmere‑blend hoodie", category:"male", price:18500, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20cashmere-blend%20hoodie", image:"https://images.unsplash.com/photo-1556909211-36987daf7b4d?q=80&w=1974&auto=format&fit=crop", description:"soft Italian fabric, relaxed cut." },
+                        { id:2, name:"tailored trouser", category:"male", price:22300, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20tailored%20trouser", image:"https://images.unsplash.com/photo-1473966968600-fa801b8695b1?q=80&w=1974&auto=format&fit=crop", description:"wool blend, pleated front." },
+                        { id:3, name:"silk slip dress", category:"female", price:27900, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20silk%20dress", image:"https://images.unsplash.com/photo-1571907482331-fa1c1b8b38c7?q=80&w=1887&auto=format&fit=crop", description:"champagne silk, adjustable straps." },
+                        { id:4, name:"linen shirt", category:"female", price:13400, whatsapp:"https://wa.me/2348123456789?text=Hi%20CARTER%20FASHION%20interested%20in%20linen%20shirt", image:"https://images.unsplash.com/photo-1598554747436-c9293d6a588f?q=80&w=1974&auto=format&fit=crop", description:"ivory linen, oversized fit." }
+                    ]));
+                }
+                if (!localStorage.getItem(STORAGE_KEYS.SERVICES)) {
+                    localStorage.setItem(STORAGE_KEYS.SERVICES, JSON.stringify([
+                        { id:1, title:"complimentary tailoring", description:"free alterations on all orders", icon:"fas fa-cut" },
+                        { id:2, title:"swatch service", description:"fabric samples before you buy", icon:"fas fa-swatchbook" },
+                        { id:3, title:"concierge", description:"personal stylist on chat", icon:"fas fa-concierge-bell" }
+                    ]));
+                }
+                if (!localStorage.getItem(STORAGE_KEYS.CONTENT)) {
+                    localStorage.setItem(STORAGE_KEYS.CONTENT, JSON.stringify({
+                        heroTitle: "<strong>CARTER</strong> edit · timeless style",
+                        heroSubtitle: "Discover luxury‑infused essentials, from tailored fits to fluid silhouettes.",
+                        aboutTitle: "about CARTER",
+                        aboutText1: "Carter Fashion was born in Lagos in 2021 — a bridge between contemporary streetwear and refined elegance. Each piece is crafted with intention.",
+                        aboutText2: "We believe clothing is armour: our collections blend structured tailoring with fluid fabrics, celebrating individuality.",
+                        aboutText3: "From custom finishes to premium African‑sourced textiles, Carter is a statement of confidence.",
+                        servicesTitle: "the carter experience"
+                    }));
+                }
+                if (!localStorage.getItem(STORAGE_KEYS.IMAGES)) localStorage.setItem(STORAGE_KEYS.IMAGES, JSON.stringify({}));
+                
+                if (!localStorage.getItem(STORAGE_KEYS.SETTINGS)) {
+                    localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify({
+                        currency: "₦",
+                        siteSuffix: "· CARTER",
+                        itemsPerPage: 12,
+                        adminPassword: ORIGINAL_PASSWORD
+                    }));
+                }
+                
+                if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+                    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify([
+                        { id:1, username: "carter_admin", password: btoa(ORIGINAL_PASSWORD), role: "admin" },
+                        { id:2, username: "editor", password: btoa("edit123"), role: "editor" }
+                    ]));
+                }
+            }
+            initializeData();
+
+            // helpers
+            function getProducts() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PRODUCTS)); }
+            function setProducts(p) { localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(p)); }
+            function getServices() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.SERVICES)); }
+            function setServices(s) { localStorage.setItem(STORAGE_KEYS.SERVICES, JSON.stringify(s)); }
+            function getContent() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.CONTENT)); }
+            function setContent(c) { localStorage.setItem(STORAGE_KEYS.CONTENT, JSON.stringify(c)); }
+            function getImages() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.IMAGES)); }
+            function setImages(i) { localStorage.setItem(STORAGE_KEYS.IMAGES, JSON.stringify(i)); }
+            function getSettings() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.SETTINGS)); }
+            function setSettings(s) { localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(s)); }
+            function getUsers() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS)); }
+            function setUsers(u) { localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(u)); }
+
+            // DOM elements
+            const sections = {
+                home: document.getElementById('homeSection'),
+                gender: document.getElementById('genderSection'),
+                products: document.getElementById('productsSection'),
+                about: document.getElementById('aboutSection'),
+                services: document.getElementById('servicesSection'),
+                admin: document.getElementById('adminSection')
+            };
+            const productsGrid = document.getElementById('productsGrid');
+            const adminProductsTable = document.getElementById('adminProductsTable');
+            const adminServicesDiv = document.getElementById('adminServicesTable');
+            const productForm = document.getElementById('productForm');
+            const serviceForm = document.getElementById('serviceForm');
+            const fileInput = document.getElementById('productImage');
+            const imagePreview = document.getElementById('imagePreview');
+            const fileInputLabel = document.getElementById('fileInputLabel');
+            let currentGender = 'male';
+            let currentSearchTerm = '';
+
+            // ---------- RENDER FUNCTIONS ----------
+            function displayProductsByGender(gender, searchTerm = '') {
+                let prods = getProducts().filter(p => p.category === gender);
+                
+                if (searchTerm.trim() !== '') {
+                    const term = searchTerm.toLowerCase().trim();
+                    prods = prods.filter(p => 
+                        p.name.toLowerCase().includes(term) || 
+                        (p.description && p.description.toLowerCase().includes(term))
+                    );
+                }
+                
+                productsGrid.innerHTML = '';
+                if (!prods.length) { 
+                    productsGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">no products found</p>'; 
+                    return; 
+                }
+                
+                const images = getImages();
+                const currency = getSettings().currency;
+                prods.forEach(p => {
+                    const imgSrc = images[p.id] || p.image;
+                    const card = document.createElement('div'); card.className = 'product-card';
+                    card.innerHTML = `
+                        <img src="${imgSrc}" class="product-image" alt="${p.name}">
+                        <div class="product-info">
+                            <span class="product-category ${p.category==='male'?'category-male':'category-female'}">${p.category==='male'?'him':'her'}</span>
+                            <h3 class="product-title">${p.name}</h3>
+                            <p class="product-price">${currency}${p.price.toLocaleString()}</p>
+                            <p class="product-description">${p.description || ''}</p>
+                            <a href="${p.whatsapp}" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span class="btn-text">order on whatsapp</span></a>
+                        </div>`;
+                    productsGrid.appendChild(card);
+                });
+            }
+
+            function displayServicesFront() {
+                const sv = getServices();
+                const grid = document.getElementById('servicesGrid');
+                grid.innerHTML = '';
+                sv.forEach(s => {
+                    grid.innerHTML += `<div class="service-card"><div class="service-icon"><i class="${s.icon}"></i></div><h3>${s.title}</h3><p>${s.description}</p></div>`;
+                });
+            }
+
+            function loadContentToUI() {
+                const c = getContent();
+                document.getElementById('heroTitle').innerHTML = c.heroTitle;
+                document.getElementById('heroSubtitle').innerText = c.heroSubtitle;
+                document.getElementById('aboutTitle').innerText = c.aboutTitle;
+                document.getElementById('aboutText1').innerText = c.aboutText1;
+                document.getElementById('aboutText2').innerText = c.aboutText2;
+                document.getElementById('aboutText3').innerText = c.aboutText3;
+                document.getElementById('servicesTitle').innerText = c.servicesTitle;
+                document.getElementById('heroTitleInput').value = c.heroTitle.replace(/<[^>]*>/g, '');
+                document.getElementById('heroSubtitleInput').value = c.heroSubtitle;
+                document.getElementById('aboutTitleInput').value = c.aboutTitle;
+                document.getElementById('aboutText1Input').value = c.aboutText1;
+                document.getElementById('aboutText2Input').value = c.aboutText2;
+                document.getElementById('aboutText3Input').value = c.aboutText3;
+                document.getElementById('servicesTitleInput').value = c.servicesTitle;
+            }
+
+            function displayAdminProducts() {
+                const prods = getProducts();
+                const images = getImages();
+                const currency = getSettings().currency;
+                adminProductsTable.innerHTML = '';
+                prods.forEach(p => {
+                    const imgSrc = images[p.id] || p.image;
+                    adminProductsTable.innerHTML += `<tr><td>${p.id}</td><td>${p.name}</td><td>${p.category}</td><td>${currency}${p.price}</td><td><img src="${imgSrc}"></td><td><button class="action-btn edit-btn" data-id="${p.id}"><i class="fas fa-edit"></i> edit</button> <button class="action-btn delete-btn" data-id="${p.id}"><i class="fas fa-trash"></i> del</button></td></tr>`;
+                });
+                attachProductActions();
+            }
+
+            function attachProductActions() {
+                document.querySelectorAll('.edit-btn').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); editProduct(parseInt(b.dataset.id)); });
+                });
+                document.querySelectorAll('.delete-btn').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); deleteProduct(parseInt(b.dataset.id)); });
+                });
+            }
+
+            function displayAdminServices() {
+                const sv = getServices();
+                adminServicesDiv.innerHTML = '';
+                sv.forEach(s => {
+                    const div = document.createElement('div'); div.className = 'admin-form'; div.style.marginBottom = '0.8rem';
+                    div.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center;"><div><h4>${s.title}</h4><p>${s.description} <i class="${s.icon}"></i></p></div><div><button class="action-btn edit-btn edit-service" data-id="${s.id}">edit</button> <button class="action-btn delete-btn delete-service" data-id="${s.id}">delete</button></div></div>`;
+                    adminServicesDiv.appendChild(div);
+                });
+                document.querySelectorAll('.edit-service').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); editService(parseInt(b.dataset.id)); });
+                });
+                document.querySelectorAll('.delete-service').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); deleteService(parseInt(b.dataset.id)); });
+                });
+            }
+
+            function displayUsers() {
+                const users = getUsers();
+                const container = document.getElementById('userList');
+                container.innerHTML = '';
+                users.forEach(u => {
+                    const row = document.createElement('div'); row.className = 'user-row';
+                    row.innerHTML = `<span><strong>${u.username}</strong> (${u.role})</span> <div><button class="action-btn edit-btn edit-user" data-id="${u.id}">edit</button> <button class="action-btn delete-btn delete-user" data-id="${u.id}">delete</button></div>`;
+                    container.appendChild(row);
+                });
+                document.querySelectorAll('.edit-user').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); editUser(parseInt(b.dataset.id)); });
+                });
+                document.querySelectorAll('.delete-user').forEach(b => {
+                    b.addEventListener('click', (e) => { e.preventDefault(); deleteUser(parseInt(b.dataset.id)); });
+                });
+            }
+
+            // ---------- CRUD ----------
+            function editProduct(id) {
+                const p = getProducts().find(x => x.id === id);
+                if (!p) return;
+                document.getElementById('productId').value = p.id;
+                document.getElementById('productName').value = p.name;
+                document.getElementById('productCategory').value = p.category;
+                document.getElementById('productPrice').value = p.price;
+                document.getElementById('productWhatsApp').value = p.whatsapp;
+                document.getElementById('productDescription').value = p.description || '';
+                const images = getImages();
+                if (images[p.id]) { imagePreview.src = images[p.id]; imagePreview.style.display = 'block'; fileInputLabel.textContent = 'change image'; } else { imagePreview.style.display = 'none'; }
+                document.getElementById('formTitle').innerText = 'edit product';
+                productForm.style.display = 'block';
+            }
+            function deleteProduct(id) {
+                if (confirm('delete product?')) {
+                    let prods = getProducts().filter(p => p.id !== id);
+                    let img = getImages(); delete img[id];
+                    setProducts(prods); setImages(img);
+                    displayAdminProducts(); displayProductsByGender(currentGender, currentSearchTerm);
+                    showNotif('product deleted');
+                }
+            }
+            async function saveProduct(e) {
+                e.preventDefault(); 
+                const btn = e.target.querySelector('button[type=submit]'); setLoading(btn, true);
+                setTimeout(async () => {
+                    const id = document.getElementById('productId').value;
+                    const name = document.getElementById('productName').value;
+                    const cat = document.getElementById('productCategory').value;
+                    const price = parseFloat(document.getElementById('productPrice').value);
+                    const wa = document.getElementById('productWhatsApp').value;
+                    const desc = document.getElementById('productDescription').value;
+                    const file = fileInput.files[0];
+                    let prods = getProducts(); let images = getImages();
+                    let newId = id ? parseInt(id) : (prods.length ? Math.max(...prods.map(p=>p.id))+1 : 1);
+                    let imageData = null;
+                    if (file) { try { imageData = await imageToBase64(file); } catch (er) { showNotif('image error','error'); setLoading(btn,false); return; } }
+                    if (id) {
+                        const idx = prods.findIndex(p => p.id === parseInt(id));
+                        if (idx>=0) { prods[idx] = { id:parseInt(id), name, category:cat, price, whatsapp:wa, description:desc, image:prods[idx].image }; }
+                    } else { prods.push({ id:newId, name, category:cat, price, whatsapp:wa, description:desc, image:'' }); }
+                    if (imageData) images[newId] = imageData;
+                    setProducts(prods); setImages(images);
+                    displayAdminProducts(); displayProductsByGender(currentGender, currentSearchTerm);
+                    hideProductForm(); showNotif(id?'updated':'added'); setLoading(btn,false);
+                },800);
+            }
+
+            function editService(id) {
+                const s = getServices().find(x => x.id === id);
+                if (!s) return;
+                document.getElementById('serviceId').value = s.id;
+                document.getElementById('serviceTitle').value = s.title;
+                document.getElementById('serviceDescription').value = s.description;
+                document.getElementById('serviceIcon').value = s.icon;
+                document.getElementById('serviceFormTitle').innerText = 'edit service';
+                serviceForm.style.display = 'block';
+            }
+            function deleteService(id) {
+                if (confirm('delete service?')) { setServices(getServices().filter(s => s.id !== id)); displayAdminServices(); displayServicesFront(); showNotif('service removed'); }
+            }
+            function saveService(e) {
+                e.preventDefault(); const btn = e.target.querySelector('button[type=submit]'); setLoading(btn,true);
+                setTimeout(() => {
+                    let sv = getServices();
+                    const id = document.getElementById('serviceId').value;
+                    const title = document.getElementById('serviceTitle').value;
+                    const desc = document.getElementById('serviceDescription').value;
+                    const icon = document.getElementById('serviceIcon').value;
+                    if (id) {
+                        const idx = sv.findIndex(s => s.id === parseInt(id));
+                        if (idx>=0) sv[idx] = { id:parseInt(id), title, description:desc, icon };
+                    } else {
+                        const newId = sv.length ? Math.max(...sv.map(s=>s.id))+1 : 1;
+                        sv.push({ id:newId, title, description:desc, icon });
+                    }
+                    setServices(sv); displayAdminServices(); displayServicesFront(); hideServiceForm(); showNotif('service saved'); setLoading(btn,false);
+                },600);
+            }
+
+            function editUser(id) {
+                const u = getUsers().find(x => x.id === id);
+                if (!u) return;
+                document.getElementById('userId').value = u.id;
+                document.getElementById('username').value = u.username;
+                document.getElementById('userPassword').value = '';
+                document.getElementById('userRole').value = u.role;
+                document.getElementById('userForm').style.display = 'block';
+            }
+            function deleteUser(id) {
+                if (id === 1) { showNotif('cannot delete primary admin','error'); return; }
+                if (confirm('delete user?')) { setUsers(getUsers().filter(u => u.id !== id)); displayUsers(); showNotif('user deleted'); }
+            }
+
+            function loadSettingsToForm() {
+                const s = getSettings();
+                document.getElementById('currencySymbol').value = s.currency;
+                document.getElementById('siteSuffix').value = s.siteSuffix;
+                document.getElementById('itemsPerPage').value = s.itemsPerPage;
+                document.getElementById('adminPasswordSetting').value = '';
+                adminPassword = s.adminPassword;
+                
+                const root = document.documentElement;
+                const primary = getComputedStyle(root).getPropertyValue('--primary').trim();
+                const secondary = getComputedStyle(root).getPropertyValue('--secondary').trim();
+                document.getElementById('primaryColorPicker').value = rgbToHex(primary) || '#3E2A4A';
+                document.getElementById('secondaryColorPicker').value = rgbToHex(secondary) || '#C9A04B';
+                document.getElementById('primaryColorBox').style.background = primary;
+                document.getElementById('secondaryColorBox').style.background = secondary;
+            }
+
+            function rgbToHex(rgb) {
+                if (!rgb) return null;
+                const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                if (!match) return rgb;
+                return '#' + ((1 << 24) + (parseInt(match[1]) << 16) + (parseInt(match[2]) << 8) + parseInt(match[3])).toString(16).slice(1);
+            }
+
+            function applyColors(primary, secondary) {
+                document.documentElement.style.setProperty('--primary', primary);
+                document.documentElement.style.setProperty('--secondary', secondary);
+                document.getElementById('primaryColorBox').style.background = primary;
+                document.getElementById('secondaryColorBox').style.background = secondary;
+            }
+
+            function imageToBase64(f) { return new Promise((res,rej) => { const r = new FileReader(); r.readAsDataURL(f); r.onload = () => res(r.result); r.onerror = rej; }); }
+            function setLoading(btn,state) { if (state) { btn.disabled = true; btn.classList.add('btn-loading'); } else { btn.disabled = false; btn.classList.remove('btn-loading'); } }
+            function showNotif(msg, type='success') { const n = document.createElement('div'); n.textContent=msg; n.style.cssText='position:fixed;top:20px;right:20px;background:'+(type==='success'?'#25D366':'#c0392b')+';color:white;padding:1rem 1.5rem;border-radius:40px;z-index:9999;'; document.body.appendChild(n); setTimeout(()=>{ n.remove(); },2500); }
+            function hideProductForm() { productForm.style.display='none'; document.getElementById('productFormElement').reset(); imagePreview.style.display='none'; fileInputLabel.textContent='upload image'; }
+            function hideServiceForm() { serviceForm.style.display='none'; document.getElementById('serviceFormElement').reset(); }
+            
+            function showSection(sec) {
+                Object.values(sections).forEach(s => { if (s) s.style.display = 'none'; }); 
+                if (sections[sec]) sections[sec].style.display = 'block'; 
+                if (sec === 'services') displayServicesFront(); 
+                if (sec === 'admin') {
+                    displayAdminProducts(); 
+                    displayAdminServices(); 
+                    displayUsers(); 
+                    loadSettingsToForm(); 
+                }
+                if (sec === 'products' && currentGender) {
+                    displayProductsByGender(currentGender, currentSearchTerm);
+                }
+            }
+            
+            function showGenderProducts(gender) { 
+                currentGender = gender; 
+                currentSearchTerm = '';
+                document.getElementById('searchInput').value = '';
+                document.getElementById('categoryTitle').innerHTML = `<i class="fas fa-${gender==='male'?'mars':'venus'}"></i> <span>${gender==='male'?'him':'her'} collection</span>`; 
+                displayProductsByGender(gender, ''); 
+                sections.gender.style.display='none'; 
+                sections.products.style.display='block'; 
+            }
+
+            // ---------- EVENT LISTENERS – ALL BUTTONS FIXED ----------
+            document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); showSection(a.dataset.section); }));
+            
+            document.querySelectorAll('.gender-btn').forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); showGenderProducts(b.dataset.gender); }));
+            
+            document.getElementById('backToCategories').addEventListener('click', (e) => { 
+                e.preventDefault();
+                sections.products.style.display='none'; 
+                sections.gender.style.display='block'; 
+            });
+            
+            document.getElementById('searchBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                currentSearchTerm = document.getElementById('searchInput').value;
+                displayProductsByGender(currentGender, currentSearchTerm);
+            });
+            
+            document.getElementById('searchInput').addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    currentSearchTerm = e.target.value;
+                    displayProductsByGender(currentGender, currentSearchTerm);
+                }
+            });
+            
+            document.getElementById('adminLink').addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                document.getElementById('passwordModal').style.display = 'flex'; 
+                document.getElementById('adminPassword').value = '';
+            });
+            
+            document.getElementById('closePassword').addEventListener('click', (e)=> {
+                e.preventDefault();
+                document.getElementById('passwordModal').style.display = 'none';
+            });
+            
+            document.getElementById('backFromPassword').addEventListener('click', (e)=> { 
+                e.preventDefault();
+                document.getElementById('passwordModal').style.display = 'none'; 
+                showSection('home'); 
+            });
+            
+            document.getElementById('passwordForm').addEventListener('submit', (e) => { 
+                e.preventDefault(); 
+                const pwd = document.getElementById('adminPassword').value; 
+                if (pwd === adminPassword) { 
+                    document.getElementById('passwordModal').style.display = 'none'; 
+                    showSection('admin');
+                    showNotif('welcome carter'); 
+                } else { 
+                    showNotif('wrong password','error'); 
+                } 
+            });
+            
+            document.getElementById('backToSite').addEventListener('click', (e) => { 
+                e.preventDefault();
+                showSection('home'); 
+            });
+            
+            document.querySelectorAll('.admin-tab').forEach(tab => tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active')); 
+                this.classList.add('active');
+                document.querySelectorAll('.admin-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(this.dataset.tab + 'Tab').classList.add('active');
+            }));
+            
+            document.getElementById('addProductBtn').addEventListener('click', (e)=>{ 
+                e.preventDefault();
+                document.getElementById('formTitle').innerText = 'add product'; 
+                document.getElementById('productId').value = ''; 
+                document.getElementById('productFormElement').reset(); 
+                imagePreview.style.display = 'none'; 
+                productForm.style.display = 'block'; 
+            });
+            
+            document.getElementById('cancelForm').addEventListener('click', (e) => {
+                e.preventDefault();
+                hideProductForm();
+            });
+            
+            document.getElementById('addServiceBtn').addEventListener('click', (e)=>{ 
+                e.preventDefault();
+                document.getElementById('serviceFormTitle').innerText = 'add service'; 
+                document.getElementById('serviceFormElement').reset(); 
+                serviceForm.style.display = 'block'; 
+            });
+            
+            document.getElementById('cancelServiceForm').addEventListener('click', (e) => {
+                e.preventDefault();
+                hideServiceForm();
+            });
+            
+            document.getElementById('productFormElement').addEventListener('submit', saveProduct);
+            document.getElementById('serviceFormElement').addEventListener('submit', saveService);
+            
+            fileInput.addEventListener('change', function() { 
+                if (this.files?.[0]) { 
+                    const reader = new FileReader(); 
+                    reader.onload = e => { 
+                        imagePreview.src = e.target.result; 
+                        imagePreview.style.display = 'block'; 
+                        fileInputLabel.textContent = 'change image'; 
+                    }; 
+                    reader.readAsDataURL(this.files[0]); 
+                } 
+            });
+
+            document.getElementById('addUserBtn')?.addEventListener('click', (e)=>{
+                e.preventDefault();
+                document.getElementById('userId').value = '';
+                document.getElementById('username').value = '';
+                document.getElementById('userPassword').value = '';
+                document.getElementById('userRole').value = 'editor';
+                document.getElementById('userForm').style.display = 'block';
+            });
+            
+            document.getElementById('cancelUserForm')?.addEventListener('click', (e)=>{
+                e.preventDefault();
+                document.getElementById('userForm').style.display='none';
+            });
+            
+            document.getElementById('userFormElement')?.addEventListener('submit', (e)=>{
+                e.preventDefault(); 
+                const btn = e.target.querySelector('button[type=submit]'); 
+                setLoading(btn,true);
+                setTimeout(() => {
+                    let users = getUsers();
+                    const id = document.getElementById('userId').value;
+                    const username = document.getElementById('username').value;
+                    const pwd = document.getElementById('userPassword').value;
+                    const role = document.getElementById('userRole').value;
+                    if (id) {
+                        const idx = users.findIndex(u => u.id === parseInt(id));
+                        if (idx>=0) { 
+                            users[idx].username = username; 
+                            if (pwd) users[idx].password = btoa(pwd);
+                            users[idx].role = role;
+                        }
+                    } else {
+                        const newId = users.length ? Math.max(...users.map(u=>u.id))+1 : 3;
+                        users.push({ id:newId, username, password: btoa(pwd || 'default123'), role });
+                    }
+                    setUsers(users); 
+                    displayUsers(); 
+                    document.getElementById('userForm').style.display='none'; 
+                    showNotif('user saved'); 
+                    setLoading(btn,false);
+                },500);
+            });
+
+            document.getElementById('settingsForm')?.addEventListener('submit', (e)=>{
+                e.preventDefault(); 
+                const newPwd = document.getElementById('adminPasswordSetting').value;
+                const settings = {
+                    currency: document.getElementById('currencySymbol').value,
+                    siteSuffix: document.getElementById('siteSuffix').value,
+                    itemsPerPage: parseInt(document.getElementById('itemsPerPage').value),
+                    adminPassword: newPwd ? newPwd : adminPassword
+                };
+                setSettings(settings);
+                if (newPwd) adminPassword = newPwd;
+                showNotif('settings updated');
+                displayProductsByGender(currentGender, currentSearchTerm);
+                document.getElementById('adminPasswordSetting').value = '';
+            });
+            
+            document.getElementById('applyColorsBtn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                const primary = document.getElementById('primaryColorPicker').value;
+                const secondary = document.getElementById('secondaryColorPicker').value;
+                applyColors(primary, secondary);
+                showNotif('colors applied');
+            });
+            
+            document.getElementById('resetColorsBtn')?.addEventListener('click', (e)=> {
+                e.preventDefault();
+                applyColors('#3E2A4A', '#C9A04B');
+                document.getElementById('primaryColorPicker').value = '#3E2A4A';
+                document.getElementById('secondaryColorPicker').value = '#C9A04B';
+                showNotif('colors reset to default');
+            });
+
+            document.getElementById('contentForm').addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                const btn = e.target.querySelector('button[type=submit]'); 
+                setLoading(btn,true);
+                setTimeout(() => {
+                    const c = {
+                        heroTitle: document.getElementById('heroTitleInput').value,
+                        heroSubtitle: document.getElementById('heroSubtitleInput').value,
+                        aboutTitle: document.getElementById('aboutTitleInput').value,
+                        aboutText1: document.getElementById('aboutText1Input').value,
+                        aboutText2: document.getElementById('aboutText2Input').value,
+                        aboutText3: document.getElementById('aboutText3Input').value,
+                        servicesTitle: document.getElementById('servicesTitleInput').value
+                    };
+                    setContent(c);
+                    loadContentToUI();
+                    showNotif('content updated');
+                    setLoading(btn,false);
+                },600);
+            });
+
+            displayServicesFront(); 
+            loadContentToUI(); 
+            showSection('home');
+            
+            setTimeout(() => {
+                const root = getComputedStyle(document.documentElement);
+                document.getElementById('primaryColorPicker').value = rgbToHex(root.getPropertyValue('--primary').trim()) || '#3E2A4A';
+                document.getElementById('secondaryColorPicker').value = rgbToHex(root.getPropertyValue('--secondary').trim()) || '#C9A04B';
+            }, 100);
+        })();
+    </script>
+</body>
+</html>
